@@ -1,17 +1,37 @@
 import requests as r
 import time
 import json
+from os import system
 
-web1 = r.get("http://127.0.25.6:9005/status").json()
-web2 = r.get("http://127.0.25.6:9005/status").json()
+#urls=["http://127.0.25.6:9005/status","http://127.0.25.6:9005/status"]
+#url_data=[]
+#url_data_processed=[]
+def primary():
+	
+	web1 = r.get("http://127.0.25.6:9005/status").json()
+	web2 = r.get("http://127.0.25.6:9005/status").json()
+	
+#	for i in len(urls):
+#		url_data.append(r.get(urls[i-1].json())   #working on a modern merging system across muitlple sub domains
+	
+#	for i in url_data:
+#		for ii in i:
+#			url_data_processed.append(f"""{f'{ii.upper()}':<8.8} |  {web1[ii]}\n""")
 
-web1_com=""
-web2_com=""
-for i in web1:
-	web1_com = web1_com + f"""{f'{i.upper()}':<8.8} |  {web1[i]}\n""" 
+	web1_com=""
+	web2_com=""
 
-for i in web2:
-	web2_com = web2_com + f"""{f'{i.upper()}':<8.8} |  {web2[i]}\n"""
+	for i in web1:
+		web1_com = web1_com + f"""{f'{i.upper()}':<8.8} |  {web1[i]}\n""" 
+
+	for i in web2:
+		web2_com = web2_com + f"""{f'{i.upper()}':<8.8} |  {web2[i]}\n"""
+
+	fin = merge_line(web1_com,web2_com)
+	#fin = merge_line(url_data_processed[0],url_data)processed
+	for i in fin:
+		print(i)
+
 
 def merge_line(var1,var2):
 	line=[]
@@ -59,8 +79,9 @@ def merge_line(var1,var2):
 
 	return line
 
-print(web1_com)
-print(web2_com)
-print(merge_line(web1_com,web2_com))
 
 
+while True:
+	time.sleep(1)
+	system("clear||cls")
+	primary()
