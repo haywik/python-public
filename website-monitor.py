@@ -23,19 +23,24 @@ def primary():
 			web_temp = web_temp + f"""{f'{exact.upper()}':<8.8} |  {raw[exact]}\n"""
 		web_format.append(web_temp)
 
+	if len(web_format) == 1: final=merge_line[0]
+	if len(web_format) == 2:
+		final=merge_line(web_format[0],web_format[1],50,1)
+		for i in final:
+			final2 = final2 + i + "\n"
+		final=merge_line(final2,web_format[2],50,2)
+	if len(web_format) > 2:
+		final=merge_line(web_format[0],web_format[1],50,1)
+		pointer=2
+		for e in range(len(web_format)-2):
+			for i in final:
+				final2 = final2 + i + "\n"									#12.may.2026 21:29 gmt, seems to bug out when above 3 cols, could be as data is not unuiqe but probs a logica issue
+			final=merge_line(final2,web_format[pointer],50,pointer)
+			pointer=pointer+1
 
-	final=merge_line(web_format[0],web_format[1],50,1)
-
-	for i in final:
-		final2 = final2 + i + "\n"
-
-	final=merge_line(final2,web_format[2],50,2)
-
-
-	
-	for line in final:
-		print(line)
-
+	#for line in final:
+		#print(line)
+	return final
 
 def merge_line(var1,var2,width,col):
 	width=width
@@ -91,6 +96,11 @@ def merge_line(var1,var2,width,col):
 	return line
 
 
+out=primary()
+while True:
+	for i in out:
+		print(i)
+	out=primary()
+	time.sleep(1)
+	system("clear||cls")
 
-
-primary()
