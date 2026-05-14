@@ -12,8 +12,17 @@ def primary():
 	final2=""
 	for url in web_url:
 		try: 
-			web_raw.append()			#Adding convert_json() into this OUT OF ORDER
-			
+			rev = r.get(url).text
+			print(rev)
+			rev = rev.replace("{","").replace("}","")
+			rev = {rev}
+			print(rev)
+			exit()
+			rev = convert_json(rev)
+			print(rev)
+			#web_raw.append(rec.text)
+			#print(web_raw)
+			exit()			#Adding convert_json() into this OUT OF ORDER
 		except Exception as e: print("prinary() web error",e)
 	for raw in web_raw:
 		web_temp=""
@@ -95,18 +104,26 @@ def merge_line(var1,var2,width,col):
 
 
 def convert_json(data):
-    proc = {}
-    temp=""
-    for char in data:
-        if char == ",":
-            part=temp.replace("{","").replace("}","").replace("'","")
-            temp=""
-            point = part.index(":")
-            part=part.replace(":","")
-            proc[part[:point].replace('"','')]=part[point:].replace('"','')
-        else:
-            temp=temp+char
-    return proc
+	print("Data",data)
+	proc = {}
+	temp=""
+	for char in data:
+		if char == ",":
+			print("char2",char)
+			part = temp
+			part=part.replace("{","").replace("}","").replace("'","")
+			temp=""
+			print("part",part)
+			point = part.index('":')
+			part=part.replace(":","")
+			print("part2",part)
+			proc[part[:point].replace('"','')]=part[point:].replace('"','')
+		else:
+			temp=temp+char
+
+	return proc
+	#print("proc",proc)
+    #return proc
 
 
 out=primary()
@@ -115,5 +132,4 @@ while True:
 		print(i)
 	out=primary()
 	time.sleep(1)
-	#system("clear||cls")
 	print("\033[H\033[J", end="")
