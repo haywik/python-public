@@ -1,9 +1,8 @@
 import requests as r
 import time
 import json
-from os import system
 
-web_url=["http://127.0.25.6:9005/status-b","http://127.0.25.3:9005/status-b","http://127.0.25.2:9005/status-b"]
+web_url=["https://haywik.com/status-b","https://dev.haywik.com/status-b","https://central.haywik.com/status-b"]
 
 def primary():
 	web_raw=[]
@@ -99,5 +98,5 @@ while True:
 		print(i)
 	out=primary()
 	time.sleep(1)
-	system("clear||cls")
-
+	#system("clear||cls")
+	print("\033[H\033[J", end="")
