@@ -10,19 +10,32 @@ import requests as r
 
 example = """{"name":"dev.haywik.com","alive":true,"uptime":"18:14:44"}"""
 
-temp=""
-temp2=""
-
-proc = {}
-
-for char in example:
-	if char == ",":
-		part=temp
-		temp=""
-		point = part.index(":")
-		proc[example[:point]]=example[point:]
-	else:
-		temp=temp+char
 
 
-print(proc)
+
+def convert_json(data):
+	proc = {}
+	temp=""
+	for char in data:
+		if char == ",":
+			part=temp.replace("{","").replace("}","").replace("'","")
+			temp=""
+			point = part.index(":")
+			part=part.replace(":","")
+			proc[part[:point].replace('"','')]=part[point:].replace('"','')
+		else:
+			temp=temp+char
+	return proc
+
+final = convert_json(example)
+
+
+main = {"random":"random"}
+
+main.update(final)
+
+print(main)
+
+
+
+

@@ -11,8 +11,10 @@ def primary():
 	final=""
 	final2=""
 	for url in web_url:
-		try: web_raw.append(r.get(url).json())
-		except: pass
+		try: 
+			web_raw.append()			#Adding convert_json() into this OUT OF ORDER
+			
+		except Exception as e: print("prinary() web error",e)
 	for raw in web_raw:
 		web_temp=""
 		for exact in raw:
@@ -90,6 +92,21 @@ def merge_line(var1,var2,width,col):
 				var1_temp=var1_temp+i
 
 	return line
+
+
+def convert_json(data):
+    proc = {}
+    temp=""
+    for char in data:
+        if char == ",":
+            part=temp.replace("{","").replace("}","").replace("'","")
+            temp=""
+            point = part.index(":")
+            part=part.replace(":","")
+            proc[part[:point].replace('"','')]=part[point:].replace('"','')
+        else:
+            temp=temp+char
+    return proc
 
 
 out=primary()
