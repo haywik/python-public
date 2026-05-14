@@ -3,9 +3,6 @@ import time
 import json
 from os import system
 
-#urls=["http://127.0.25.6:9005/status","http://127.0.25.6:9005/status"]
-#url_data=[]
-#url_data_processed=[]
 web_url=["http://127.0.25.6:9005/status-b","http://127.0.25.3:9005/status-b","http://127.0.25.2:9005/status-b"]
 
 def primary():
