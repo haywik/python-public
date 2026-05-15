@@ -19,14 +19,16 @@ if total_q <  1:
 	while True:
 		total_q = input("Total questions on paper [Num]:")
 		if total_q.isnumeric():
-			total_q = int(total_q)
-			break
+			if int(total_q)>0:
+				total_q = int(total_q)
+				break
 if total_time < 1:
 	while True:
 		total_time = input("Total time of paper [Mins]:")
 		if total_time.isnumeric():
-			total_time=int(total_time)
-			break
+			if int(total_time)>0:
+				total_time=int(total_time)
+				break
 
 tt = total_time * 60
 hour_d = int(tt / 60 / 60)
@@ -86,12 +88,18 @@ while True:
 
 	print("\033[H\033[J", end="")
 
+	if total_q!=1:
+		q_out_of=f"/ {total_q}"
+	else:
+		q_out_of="" 
+
+
 	format = f"""
-{'-'*90}
+{'—'*70}
 {f'Time enlasped: {format_time(hour,min,sec)}':<35.35} Question enlasped: {convert_time(sec_c)}\n
 {f'Time left: {format_time(hour_d,min_d,sec_d)}':<35.35} Question left: {convert_time(split_time-sec_c)}\n
-{f' ' :<35.35} Question num: {q_num}\n
-{'-'*90}
+{f' ' :<35.35} Question num: {q_num} {q_out_of}\n
+{'—'*70}
 	"""
 
 
