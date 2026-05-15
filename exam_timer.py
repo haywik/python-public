@@ -84,7 +84,7 @@ while True:
 
 	min_q_en = sec_c / 60
 
-	system("clear||cls")
+	print("\033[H\033[J", end="")
 
 	format = f"""
 {'-'*90}
