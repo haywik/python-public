@@ -12,17 +12,7 @@ def primary():
 	final2=""
 	for url in web_url:
 		try: 
-			rev = r.get(url).text
-			print(rev)
-			rev = rev.replace("{","").replace("}","")
-			rev = {rev}
-			print(rev)
-			exit()
-			rev = convert_json(rev)
-			print(rev)
-			#web_raw.append(rec.text)
-			#print(web_raw)
-			exit()			#Adding convert_json() into this OUT OF ORDER
+			web_raw.append(r.get(url).json())
 		except Exception as e: print("prinary() web error",e)
 	for raw in web_raw:
 		web_temp=""
@@ -131,5 +121,5 @@ while True:
 	for i in out:
 		print(i)
 	out=primary()
-	time.sleep(1)
+	time.sleep(3)
 	print("\033[H\033[J", end="")
