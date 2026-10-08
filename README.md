@@ -1,3 +1,5 @@
+Repo reorganization happening.
+
 # python-public
 Place i use to store any and all useful python scripts
 
